@@ -115,7 +115,7 @@ elif choice == "Store Data":
 
         if st.button("Encrypt & Save"):
             if data and passkey:
-                encrypted = encrypt_text(data, passkey)
+                encrypted = encrypt_text(data, passkey)  #type: ignore
                 stored_data[st.session_state.authenticated_user]["data"].append(encrypted)
                 save_data(stored_data)
                 st.success("✅ Data encrypted and saved!")

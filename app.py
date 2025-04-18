@@ -4,7 +4,7 @@ import hashlib
 import json
 import os
 import time
-from cryptography.fernet import Fernet
+# from cryptography.fernet import Fernet
 from base64 import urlsafe_b64encode
 from hashlib import pbkdf2_hmac
 
@@ -40,12 +40,12 @@ def hash_password(password):
     return hashlib.pbkdf2_hmac('sha256', password.encode(), SALT, 100000).hex()
 
 def encrypt_text(text, key):
-    cipher = Fernet(generate_key(key))
+    cipher = Fernet(generate_key(key)) #type: ignore
     return cipher.encrypt(text.encode()).decode()
 
 def decrypt_text(encrypted_text, key):
     try:
-        cipher = Fernet(generate_key(key))
+        cipher = Fernet(generate_key(key)) #type: ignore
         return cipher.decrypt(encrypted_text.encode()).decode()
     except:
         return None
